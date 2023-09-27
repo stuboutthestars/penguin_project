@@ -3,14 +3,18 @@
 install.packages("tidyverse")
 library(tidyverse)
 
+#reading in the dataset
 penguin_data <- read_table("data/penguin_data.txt")
 
+#linear regression for body mass and species 
 spp_bodymass_model <- lm(body_mass_g ~ species, data = penguin_data)
 summary(spp_bodymass_model)
 
+#plotting the above regression
 ggplot(penguin_data, aes(x = species, y = body_mass_g, colour = species)) + geom_boxplot() + stat_smooth(method = "lm")
 ggsave("figs/1_body_mass_species_regression.png")
 
+#linear regression of bill length against sex
 bill_sex_model <- lm(bill_length_mm ~ sex, data = penguin_data)
 summary(bill_sex_model)
 
